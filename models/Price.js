@@ -1,17 +1,13 @@
 const mongoose = require("mongoose");
 
-const PostSchema = new mongoose.Schema({
-  item: {
-    type: String,
-    required: true,
-  },
-  sale: {
-    type: Boolean,
-    required: false,
-  },
+const PriceSchema = new mongoose.Schema({
   price: {
     type: Number,
     required: true,
+  },
+  item: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Item",
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
@@ -23,4 +19,4 @@ const PostSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Post", PostSchema);
+module.exports = mongoose.model("Price", PriceSchema);

@@ -1,12 +1,13 @@
 <%- include('partials/header') -%>
+  <h1>Shopping List</h1>
   <div class="container">
     <div class="row justify-content-center mt-5">
       <ul class="row list-unstyled">
-        <% for(var i=0; i<posts.length; i++) {%>
+        <% for(var i=0; i<items.length; i++) {%>
           <li class="col-6 justify-content-between mt-5">
-            <a href="/post/<%= posts[i]._id%>">
-              <img class="img-fluid" src="<%= posts[i].image%>">
-            </a>
+            <span><%= items[i].item %></span>
+            <span>$<%= items[i].prices[0].price.toFixed(2) %></span>
+            <span><%= items[i].createdAt.getMonth() %>/<%= items[i].createdAt.getDate() %>/<%= items[i].createdAt.getFullYear() %></span>
           </li>
         <% } %>
         </ul>

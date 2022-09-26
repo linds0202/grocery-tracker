@@ -2,19 +2,19 @@
 <div class="container">
   <div class="row justify-content-center mt-5">
     <div class="col-6">
-      <h2><%= post.item %></h2>
+      <h2><%= item.item %></h2>
       <div class="row justify-content-between">
         <form
           class="col-1"
-          action="/post/likePost/<%= post.id %>?_method=PUT"
+          action="/post/likeItem/<%= item.id %>?_method=PUT"
           method="POST"
         >
           <button class="btn btn-primary fa fa-heart" type="submit"></button>
         </form>
-        <h3 class="col-3">Likes: <%= post.price %></h3>
-        <%if(post.user == user.id){ %>
+        <h3 class="col-3">Likes: <%= item.price %></h3>
+        <%if(item.user == user.id){ %>
         <form
-          action="/post/deletePost/<%= post.id %>?_method=DELETE"
+          action="/item/deleteItem/<%= item.id %>?_method=DELETE"
           method="POST"
           class="col-3"
         >
@@ -24,9 +24,9 @@
       </div>
     </div>
     <div class="col-3 mt-5">
-      <p>$<%= post.price.toFixed(2) %></p>
+      <p>$<%= item.price[0].toFixed(2) %></p>
     </div>
-    <form action="/comment/createComment/<%=post._id%>" method="POST">
+    <form action="/comment/createComment/<%=item._id%>" method="POST">
       <div class="mb-3">
           <label for="comment" class="form-label">Comment</label>
           <input type="text" class="form-control" id="comment" name="comment">
@@ -44,7 +44,7 @@
     </ul>
     <div class="col-6 mt-5">
       <a class="btn btn-primary" href="/profile">Return to Profile</a>
-      <a class="btn btn-primary" href="/feed">Return to Feed</a>
+      <a class="btn btn-primary" href="/feed">Return to Item List</a>
     </div>
   </div>
 </div>

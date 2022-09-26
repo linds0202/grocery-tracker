@@ -31,33 +31,15 @@ module.exports = {
   },
   createPost: async (req, res) => {
     try {
-      // Upload image to cloudinary
-      const result = await cloudinary.uploader.upload(req.file.path);
 
       await Post.create({
-        title: req.body.title,
-        image: result.secure_url,
-        cloudinaryId: result.public_id,
-        caption: req.body.caption,
-        likes: 0,
+        item: req.body.item,
+        sale: req.body.sale,
+        price: req.body.price,
         user: req.user.id,
       });
-      console.log("Post has been added!");
+      console.log("Item has been added!");
       res.redirect("/profile");
-    } catch (err) {
-      console.log(err);
-    }
-  },
-  likePost: async (req, res) => {
-    try {
-      await Post.findOneAndUpdate(
-        { _id: req.params.id },
-        {
-          $inc: { likes: 1 },
-        }
-      );
-      console.log("Likes +1");
-      res.redirect(`/post/${req.params.id}`);
     } catch (err) {
       console.log(err);
     }
@@ -66,11 +48,9 @@ module.exports = {
     try {
       // Find post by id
       let post = await Post.findById({ _id: req.params.id });
-      // Delete image from cloudinary
-      await cloudinary.uploader.destroy(post.cloudinaryId);
       // Delete post from db
       await Post.remove({ _id: req.params.id });
-      console.log("Deleted Post");
+      console.log("Deleted Item");
       res.redirect("/profile");
     } catch (err) {
       res.redirect("/profile");
