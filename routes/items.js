@@ -9,6 +9,10 @@ router.get("/:id", ensureAuth, itemsController.getItem);
 
 router.post("/createItem", upload.single("file"), itemsController.createItem);
 
+router.put("/addItem/:id", itemsController.addItem);
+
+router.put("/addItemPrice/:id", itemsController.addItemPrice);
+
 router.delete("/deleteItem/:id", itemsController.deleteItem);
 
 module.exports = router;

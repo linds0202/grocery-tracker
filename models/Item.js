@@ -5,14 +5,14 @@ const ItemSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  sale: {
+  inList: {
     type: Boolean,
-    required: false,
+    default: true,
   },
   prices: [
     {
       price: {
-        type: Number,
+        type: mongoose.Types.Decimal128,
         required: true,
       },
       date: {

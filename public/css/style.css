@@ -1,0 +1,88 @@
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid black;
+}
+
+.inner-header-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.grocery-logo {
+    width: 64px;
+    height: 64px;
+}
+
+.header-title {
+    margin: auto 0 auto 15px;
+}
+
+.header-title a {
+    margin: 0;
+    text-decoration: none;
+}
+
+.inner-container {
+    padding: 5px 10px 5px 10px;
+}
+
+.logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.user-info p {
+    margin: 0;
+}
+
+
+thead {
+    background-color: #3f87a6;
+    color: #fff;
+}
+
+tbody {
+    background-color: #e4f0f5;
+}
+
+caption {
+    padding: 10px;
+    caption-side: bottom;
+}
+
+table {
+    width: 800px;
+    border-collapse: collapse;
+    border: 2px solid rgb(200, 200, 200);
+    letter-spacing: 1px;
+    font-family: sans-serif;
+    font-size: .8rem;
+}
+
+td,
+th {
+    border: 1px solid rgb(190, 190, 190);
+    padding: 5px 10px;
+    width: 100px;
+}
+
+td {
+    text-align: center;
+}
+
+.add-price {
+    width: 50px;
+}
+
+.list-unstyled {
+    display: flex;
+}
+
+.list-item {
+    width: 100%;
+}

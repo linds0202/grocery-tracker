@@ -7,10 +7,6 @@ module.exports = {
     try {
       const items = await Item.find({ user: req.user.id });
       console.log(items)
-      for (let i = 0; i < items.length; i++) {
-        console.log(items[i].item)
-        console.log(items[i].prices)
-      }
       res.render("profile.ejs", { items: items, user: req.user });
     } catch (err) {
       console.log(err);
@@ -18,7 +14,8 @@ module.exports = {
   },
   getFeed: async (req, res) => {
     try {
-      const items = await Item.find().sort({ createdAt: "desc" }).lean();
+      // .sort({ createdAt: "desc" }).lean()
+      const items = await Item.find({ user: req.user.id, inList: true });
       res.render("feed.ejs", { items: items });
     } catch (err) {
       console.log(err);
@@ -51,16 +48,46 @@ module.exports = {
       console.log(err);
     }
   },
-  deleteItem: async (req, res) => {
+  addItemPrice: async (req, res) => {
+    const newPrice = req.body.itemPrice
+    console.log(newPrice)
     try {
-      // Find post by id
-      let item = await Item.findById({ _id: req.params.id });
-      // Delete post from db
-      await Item.remove({ _id: req.params.id });
-      console.log("Deleted Item");
+      await Item.findOneAndUpdate(
+        { _id: req.params.id }, 
+        { $push: { prices: {price: newPrice, Date} } },
+    )
+      console.log("Updated price list");
       res.redirect("/profile");
     } catch (err) {
-      res.redirect("/profile");
+      console.log(err);
+    }
+  },
+  addItem: async (req, res) => {
+    try {
+      await Item.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $set: { inList: true },
+        }
+      );
+      console.log("Removed item from shopping list");
+      res.redirect("/feed");
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  deleteItem: async (req, res) => {
+    try {
+      await Item.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $set: { inList: false },
+        }
+      );
+      console.log("Removed item from shopping list");
+      res.redirect("/feed");
+    } catch (err) {
+      console.log(err);
     }
   },
 };
