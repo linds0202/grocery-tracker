@@ -1,8 +1,17 @@
+body {
+    background-color: #bce5f6;
+}
+
+/* ****
+ Header
+**** */
+
 .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 10px 30px;
+    background-color: #fff;
     border-bottom: 1px solid black;
 }
 
@@ -25,21 +34,78 @@
     text-decoration: none;
 }
 
-.inner-container {
-    padding: 5px 10px 5px 10px;
+.top-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
-.logout {
+.inner-container {
+    margin: 5px 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.user-info {
+    margin: 5px 10px;
+}
+
+/* ****
+ Index
+**** */
+.index {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 20px;
+}
+
+.cover-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    margin: 0 30px;
     
 }
 
-.user-info p {
+.cover-container h1 {
+    color: #F77A13;
+    font-size: 3.5rem;
+    font-weight: bold;
     margin: 0;
+    padding: 0 0 10px 0;
+} 
+.cover-container h3 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    line-height: 1.8rem;
+    margin: 10px 0 10px 0;
+    padding: 0;
+} 
+.cover-container p {
+    margin: 0;
+    padding: 0;
 }
 
+.cover-img {
+    border-radius: 5%;
+}
+
+.button-container {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+/* ****
+ Table
+**** */
 
 thead {
     background-color: #3f87a6;
@@ -78,6 +144,10 @@ td {
 .add-price {
     width: 50px;
 }
+
+/* ****
+ List
+**** */
 
 .list-unstyled {
     display: flex;

@@ -33,8 +33,10 @@ module.exports = {
   },
   createItem: async (req, res) => {
     try {
+      console.log(req.body)
       const newPrice = req.body.prices
       const newPriceEntry = {price: newPrice, Date}
+      console.log("1")
       console.log(newPriceEntry)
       await Item.create({
         item: req.body.item,
@@ -50,6 +52,7 @@ module.exports = {
   },
   addItemPrice: async (req, res) => {
     const newPrice = req.body.itemPrice
+    console.log("2")
     console.log(newPrice)
     try {
       await Item.findOneAndUpdate(
