@@ -7,7 +7,11 @@ const ItemSchema = new mongoose.Schema({
   },
   inList: {
     type: Boolean,
-    default: true,
+    default: false,
+  },
+  completed: {
+    type: Boolean,
+    default: false,
   },
   prices: [
     {

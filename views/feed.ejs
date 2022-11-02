@@ -1,29 +1,72 @@
 <%- include('partials/header') -%>
 
-  <h1>Shopping List</h1>
+  <h1 class="list-title">Shopping List</h1>
   
   <div class="container">
     <div class="row justify-content-center mt-5">
-      <ul class="row list-unstyled">
-        <% for(var i=0; i<items.length; i++) {%>
-          <li class="col-6 justify-content-between mt-5 list-item">
-            <span><%= items[i].item %></span>
-            <span>$<%= items[i].prices[0].price %></span>
-            <span>
-                <form
-                  action="/item/deleteItem/<%= items[i].id %>?_method=DELETE"
-                  method="POST"
-                  class="col-3"
-                >
-                <button class="btn btn-primary fa fa-trash" type="submit"></button>
-                </form>
-              </span> 
-          </li>
-        <% } %>
-      </ul>
+      <table >
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Item</th>
+            <th scope="col">Most Recent Price</th>
+            <th scope="col">Cheapest Price</th>
+            <th scope="col">Remove from List</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i=0; i<items.length; i++) {%>
+            <tr class="table-row">
+                <td>
+                  <form
+                      action="/item/checkItem/<%= items[i].id %>?_method=PUT"
+                      method="POST"
+                    >
+                    <!-- <span class="btn btn-primary fa <%= items[i].completed === true ? 'Square-Full' : 'Square-Check'%> fontawesomeicon"></span> -->
+                    <button class="btn btn-primary fa <%= items[i].completed === true ? 'Square-Check' : 'Square-Full'%> fontawesomeicon" type="submit"></button>
+                  </form>
+                </td>
+                <td><%= items[i].item %></td>
+                <td>$<%= items[i].prices[items[i].prices.length - 1].price %></td>
+                <td>$<%= items[i].prices.sort((a, b) => a.price - b.price)[0].price %></td>
+                <td class="table-data-form">
+                    <form
+                      action="/item/deleteItem/<%= items[i].id %>?_method=DELETE"
+                      method="POST"
+                    >
+                    <button class="btn btn-primary fa fa-trash" type="submit"></button> 
+                    </form>
+                </td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table> 
     </div>
   </div>  
-  <div class="list-button">
-    <a class="btn btn-primary" href="/profile">Return to Pricing List</a>
+  <div class="list-button-container">
+    <div class="list-button">
+      <a class="btn btn-primary" href="/profile">Return to Pricing List</a>
+    </div>
   </div>
 <%- include('partials/footer') -%>
+
+
+<!-- 
+
+<ul class="row list-unstyled">
+  <% for(var i=0; i<items.length; i++) {%>
+    <li class="col-6 justify-content-between mt-5 list-item">
+      <span><%= items[i].item %></span>
+      <span>$<%= items[i].prices[0].price %></span>
+      <span>
+          <form
+            action="/item/deleteItem/<%= items[i].id %>?_method=DELETE"
+            method="POST"
+            class="col-3"
+          >
+          <button class="btn btn-primary fa fa-trash" type="submit"></button>
+          </form>
+        </span> 
+    </li>
+  <% } %>
+</ul> -->

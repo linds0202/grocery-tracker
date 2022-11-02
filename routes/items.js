@@ -13,6 +13,8 @@ router.put("/addItem/:id", itemsController.addItem);
 
 router.put("/addItemPrice/:id", itemsController.addItemPrice);
 
+router.put("/checkItem/:id", itemsController.checkItem);
+
 router.delete("/deleteItem/:id", itemsController.deleteItem);
 
 module.exports = router;

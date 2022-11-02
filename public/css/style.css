@@ -198,13 +198,42 @@ td {
 }
 
 /* ****
- List
+ List check boxes
 **** */
 
-.list-unstyled {
-    display: flex;
+
+.fontawesomeicon::before {
+    display: inline-block;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+ }
+
+.Square-Check::before {
+   font: var(--fa-font-solid);
+    content: ' \f14a';
+ }
+
+.Square-Full::before {
+   font: var(--fa-font-solid);
+    content: ' \f45c';
+ }
+
+
+.list-title {
+    font-size: 4rem;
+    font-weight: bold;
+    text-align: center;
+    color: #F77A13;
 }
 
-.list-item {
+.list-button-container {
     width: 100%;
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.list-button {
+    width: 400px;
 }

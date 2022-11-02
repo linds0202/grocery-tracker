@@ -70,10 +70,26 @@ module.exports = {
       await Item.findOneAndUpdate(
         { _id: req.params.id },
         {
-          $set: { inList: true },
+          $set: { inList: true, completed: false },
         }
       );
-      console.log("Removed item from shopping list");
+      console.log("Added item to shopping list");
+      res.redirect("/feed");
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  checkItem: async (req, res) => {
+    const item = await Item.findById(req.params.id)
+    console.log(item)
+    try {
+      await Item.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $set: { completed: !item.completed },
+        }
+      );
+      console.log("Aletered completed status");
       res.redirect("/feed");
     } catch (err) {
       console.log(err);
